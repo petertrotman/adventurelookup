@@ -60,8 +60,8 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     historyApiFallback: true,
-    progress: true,
     host: '0.0.0.0',
-    port: 7700,
+    port: 80,
+    stats: 'errors-only',
   }
 };

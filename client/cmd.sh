@@ -3,11 +3,12 @@ set -e
 cd /code
 
 if [ "$ENV" = 'DEV' ]; then
-    echo "Building Production Files & Running Development Server."
+    echo "Building development files."
     npm run build:dev
+    echo "Running development server."
     exec npm start
 else
-    echo "Building Production Files"
+    echo "Building production files"
     exec npm run build:prod
 fi
 
