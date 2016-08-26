@@ -1,0 +1,41 @@
+version: '2'
+services:
+  web:
+    build: ./client
+    volumes:
+      - web-dist:/code/dist
+    environment:
+      - ENV=PROD
+  api:
+    build: ./server
+    volumes:
+      - uwsgi-socket:/var/run/uwsgi
+    environment:
+      - ENV=PROD
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./nginx/nginx.prod.conf:/etc/nginx/nginx.conf
+      - uwsgi-socket:/var/run/uwsgi
+      - web-dist:/usr/share/nginx/html
+    links:
+      - web
+    ports:
+      - "80:80"
+    environment:
+      - ENV=PROD
+  db:
+    image: postgres
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      - ENV=DEV
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+
+volumes:
+  uwsgi-socket:
+  web-dist:
+  data:
+    # external: true
