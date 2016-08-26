@@ -62,6 +62,6 @@ module.exports = {
     historyApiFallback: true,
     progress: true,
     host: '0.0.0.0',
-    port: 7700,
+    port: 80,
   }
 };
