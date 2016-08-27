@@ -20,12 +20,25 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'pw%e*b9*mrpq7m+#xjp(_0-*d!q3zgqwifq@ihw5hyfw5o+jk3'
+SECRET_KEY = os.environ.get('SECRET_KEY',
+                            'pw%e*b9*mrpq7m+#xjp(_0-*d'
+                            '!q3zgqwifq@ihw5hyfw5o+jk3')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if os.environ.get('ENV') == 'DEV' else False
 
 ALLOWED_HOSTS = []
+
+WSGI_APPLICATION = 'adventurelookup.wsgi.application'
+ROOT_URLCONF = 'adventurelookup.urls'
+BASE_URL = '/api'
+BASE_URL_PATTERN = BASE_URL.replace('/', '^', 1)
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.10/howto/static-files/
+
+STATIC_URL = BASE_URL + '/static/'
+STATIC_ROOT = '/var/www/static/'
 
 
 # Application definition
@@ -49,8 +62,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'adventurelookup.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -67,7 +78,16 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'adventurelookup.wsgi.application'
+
+# Cache
+# https://docs.djangoproject.com/en/1.10/ref/settings/#std:setting-CACHES
+
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': 'redis:6379'
+    }
+}
 
 
 # Database
@@ -75,8 +95,12 @@ WSGI_APPLICATION = 'adventurelookup.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'adventurelookup',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 
@@ -114,7 +138,3 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-
-STATIC_URL = '/static/'

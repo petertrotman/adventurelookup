@@ -11,6 +11,9 @@ services:
     volumes:
       - ./server:/code
       - uwsgi-socket:/var/run/uwsgi
+    links:
+      - db
+      - redis
     environment:
       - ENV=DEV
   nginx:
@@ -24,15 +27,17 @@ services:
       - "80:80"
     environment:
       - ENV=DEV
-  # db:
-  #   image: postgres
-  #   volumes:
-  #     - /var/lib/postgresql/data
-  #   environment:
-  #     - ENV=DEV
-  #     - POSTGRES_USER=postgres
-  #     - POSTGRES_PASSWORD=postgres
-  #     - POSTGRES_DB=postgres
+  db:
+    image: postgres
+    volumes:
+      - /var/lib/postgresql/data
+    environment:
+      - ENV=DEV
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=adventurelookup
+  redis:
+    image: redis
 
 volumes:
   uwsgi-socket:
