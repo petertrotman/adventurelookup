@@ -1,0 +1,32 @@
+@import '../variables';
+
+div.header {
+  background: $brand-primary;
+  padding: 0.5em;
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+nav.nav-main {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+nav .nav-link {
+  color: $brand-info;
+  text-decoration: none;
+  padding: 0.5em;
+}
+
+div.content {
+  width: 80%;
+}
+
+div.content-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

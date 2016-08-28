@@ -7,15 +7,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 let config = {
   entry: [
     'react-hot-loader/patch',
-    './src/index.js'
+    './src/index.js',
   ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: '/static/',
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js'],
   },
   module: {
     loaders: [
@@ -30,26 +30,26 @@ let config = {
       },
       {
         test: /(\.scss|\.sass)$/,
-        loaders: ['style', 'css', 'postcss', 'sass']
+        loaders: ['style', 'css', 'postcss', 'sass'],
       },
       {
         test: /\.woff$/,
-        loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[path][name].[ext]"
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff&name=[path][name].[ext]',
       },
       {
         test: /\.woff2$/,
-        loader: "url-loader?limit=10000&mimetype=application/font-woff2&name=[path][name].[ext]"
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff2&name=[path][name].[ext]',
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: 'file?name=[path][name].[ext]'
+        loader: 'file?name=[path][name].[ext]',
       },
-    ]
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Adventure Lookup',
-      template: './src/index.html.ejs'
+      template: './src/index.html.ejs',
     }),
   ],
   postcss: [
@@ -62,16 +62,15 @@ if (process.env.NODE_ENV === 'production') {
     plugins: config.plugins.concat(
       new webpack.DefinePlugin({
         'process.env': {
-          'NODE_ENV': JSON.stringify('production')
-        }
+          NODE_ENV: JSON.stringify('production'),
+        },
       }),
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin()
-    )
+    ),
   });
-}
-else {
+} else {
   config = Object.assign(config, {
     debug: true,
     devtool: 'source-map',
@@ -79,8 +78,8 @@ else {
     plugins: config.plugins.concat(
       new webpack.DefinePlugin({
         'process.env': {
-          'NODE_ENV': JSON.stringify('development')
-        }
+          NODE_ENV: JSON.stringify('development'),
+        },
       })
     ),
     devServer: {
@@ -89,7 +88,7 @@ else {
       host: '0.0.0.0',
       port: 80,
       stats: 'errors-only',
-    }
+    },
   });
 }
 
