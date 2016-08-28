@@ -1,3 +1,7 @@
+"""
+Admin model registration for the Signups API.
+"""
 from django.contrib import admin
+from . import models
 
-# Register your models here.
+admin.site.register(models.Signup)

@@ -1,11 +1,12 @@
 FROM python:3.5
 
 RUN mkdir /code
+WORKDIR /code
 
 COPY requirements.txt /code/
 # Docker Python image doesn't like pkg-resources
-RUN sed -i '/^pkg-resources.*/d' /code/requirements.txt
-RUN pip install --no-cache-dir -r /code/requirements.txt
+RUN sed -i '/^pkg-resources.*/d' requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /code
 COPY cmd.sh /

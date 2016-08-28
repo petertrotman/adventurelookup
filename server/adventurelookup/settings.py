@@ -43,6 +43,9 @@ STATIC_ROOT = '/var/www/adventurelookup/static/'
 # Application definition
 
 INSTALLED_APPS = [
+    'adventures.apps.AdventuresConfig',
+    'signups.apps.SignupsConfig',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,6 +53,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 10,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,5 +142,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-

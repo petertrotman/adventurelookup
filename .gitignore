@@ -3,3 +3,5 @@
 *.sw?
 **/*.sqlite3
 **/dist/
+**/npm-debug.log
+**/__pycache__

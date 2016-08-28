@@ -1,0 +1,18 @@
+// Colors
+//
+// Grayscale and brand colors for use across Adventurelookup.
+// Grayscale stolen from Bootstrap, brand colors from
+// http://www.colorcombos.com/color-schemes/168/ColorCombo168.html
+
+$gray-dark:      #373a3c     !default;
+$gray:           #55595c     !default;
+$gray-light:     #818a91     !default;
+$gray-lighter:   #eceeef     !default;
+$gray-lightest:  #f7f7f9     !default;
+
+$brand-primary:  #F7D708     !default;
+$brand-success:  #9CCF31     !default;
+$brand-info:     #009ECE     !default;
+$brand-warning:  #FF9E00     !default;
+$brand-danger:   #CE0000     !default;
+$brand-inverse:  $gray-dark  !default;
