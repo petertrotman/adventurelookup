@@ -18,14 +18,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
-if os.environ.get('ENV') == 'DEV':
-    SECRET_KEY = 'adventurelookup-secret-key'
-    DEBUG = True
-else:
+if os.environ.get('ENV') == 'PROD':
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = os.environ['SECRET_KEY']
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = False
+else:
+    SECRET_KEY = 'adventurelookup-secret-key'
+    DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', 'adventurelookup.com']
 WSGI_APPLICATION = 'adventurelookup.wsgi.application'
