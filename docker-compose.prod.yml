@@ -9,15 +9,16 @@ services:
   api:
     build: ./server
     volumes:
-      - uwsgi-socket:/var/run/uwsgi
+      - uwsgi-socket:/var/run/adventurelookup
     environment:
       - ENV=PROD
+      - SECRET_KEY='ONLY-FOR-TESTING-MUST-CHANGE-BEFORE-DEPLOY'
   nginx:
     build: ./nginx
     volumes:
-      - ./nginx/nginx.prod.conf:/etc/nginx/nginx.conf
-      - uwsgi-socket:/var/run/uwsgi
-      - web-dist:/usr/share/nginx/html
+      - ./nginx/conf.prod.d:/etc/nginx/conf.d
+      - uwsgi-socket:/var/run/adventurelookup
+      - web-dist:/usr/share/nginx/html/adventurelookup
     links:
       - web
     ports:
@@ -29,7 +30,7 @@ services:
     volumes:
       - data:/var/lib/postgresql/data
     environment:
-      - ENV=DEV
+      - ENV=PROD
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres

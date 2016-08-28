@@ -1,10 +1,10 @@
 /* global __dirname */
-var autoprefixer = require('autoprefixer');
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+let config = {
   entry: [
     'react-hot-loader/patch',
     './src/index.js'
@@ -51,17 +51,46 @@ module.exports = {
       title: 'Adventure Lookup',
       template: './src/index.html.ejs'
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
   ],
   postcss: [
     autoprefixer,
   ],
-  devServer: {
-    contentBase: './dist',
-    historyApiFallback: true,
-    host: '0.0.0.0',
-    port: 80,
-    stats: 'errors-only',
-  }
 };
+
+if (process.env.NODE_ENV === 'production') {
+  config = Object.assign(config, {
+    plugins: config.plugins.concat(
+      new webpack.DefinePlugin({
+        'process.env': {
+          'NODE_ENV': JSON.stringify('production')
+        }
+      }),
+      new webpack.optimize.OccurrenceOrderPlugin(),
+      new webpack.optimize.DedupePlugin(),
+      new webpack.optimize.UglifyJsPlugin()
+    )
+  });
+}
+else {
+  config = Object.assign(config, {
+    debug: true,
+    devtool: 'source-map',
+    output: Object.assign(config.output, { pathinfo: true }),
+    plugins: config.plugins.concat(
+      new webpack.DefinePlugin({
+        'process.env': {
+          'NODE_ENV': JSON.stringify('development')
+        }
+      })
+    ),
+    devServer: {
+      contentBase: './dist',
+      historyApiFallback: true,
+      host: '0.0.0.0',
+      port: 80,
+      stats: 'errors-only',
+    }
+  });
+}
+
+module.exports = config;
