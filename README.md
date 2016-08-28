@@ -17,31 +17,56 @@ If you want to develop you'll probably want one or more of the following:
 
 ### Steps
 (For Linux/OSX, if someone knows the Windows equivalents I'm happy to add them)
+
 1. Clone the repository & cd into it
+
   `git clone https://github.com/petertrotman/adventurelookup`
   `cd adventurelookup`
+
 2. Build the docker files (may take some time but there's lots of whizzing text!)
+
   `docker-compose build`
+
 3. Create the admin superuser (you will be prompted for a username and password)
+
   `docker-compose run --rm api python manage.py createsuperuser`
+
   (`--rm` ensures the container is removed after its done what it needs to do)
+
 4. Carry out the database migrations
+
   `docker-compose run --rm -u root api python manage.py makemigrations`
+
   `docker-compose run --rm -u root api python manage.py migrate`
+
   (we need to run as root in the container with `-u root` because the default user doesn't have write access to the code files)
+
 5. Run the server!
+
   `docker-compose up`
+
 6. (Optional) Run the production server!
+
   `docker-compose -f docker-compose.prod.yml up`
+
 7. Navigate to the homepage in your favorite browser at `http://localhost`
+
 8. Add some signup e-mails on the homepage
+
 9. Watch Matt's about video on the /about page
+
 10. Navigate to `/api/admin`, and enter your superuser credentials to check out your added sign-up emails.
+
 11. Stop the server
+
   (in the server terminal) `ctrl+c`
+
   --or--
+
   `docker-compose stop`
+
 12. (Only if you want to get rid of it all) Remove the Docker images
+
   `docker-compose rm -v`
 
 ## Technology Stack
