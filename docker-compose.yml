@@ -10,7 +10,7 @@ services:
     build: ./server
     volumes:
       - ./server:/code
-      - uwsgi-socket:/var/run/uwsgi
+      - uwsgi-socket:/var/run/adventurelookup
     links:
       - db
       - redis
@@ -19,8 +19,8 @@ services:
   nginx:
     build: ./nginx
     volumes:
-      - ./nginx/nginx.dev.conf:/etc/nginx/nginx.conf
-      - uwsgi-socket:/var/run/uwsgi
+      - ./nginx/conf.dev.d:/etc/nginx/conf.d
+      - uwsgi-socket:/var/run/adventurelookup
     links:
       - web
     ports:

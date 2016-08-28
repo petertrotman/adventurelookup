@@ -11,10 +11,10 @@ COPY . /code
 COPY cmd.sh /
 
 RUN groupadd -r uwsgi && useradd -r -g uwsgi uwsgi
-RUN mkdir -p /var/run/uwsgi
-RUN chown -R uwsgi:uwsgi /var/run/uwsgi
-RUN mkdir -p /var/www/static
-RUN chown -R uwsgi:uwsgi /var/www/static
+RUN mkdir -p /var/run/adventurelookup
+RUN chown -R uwsgi:uwsgi /var/run/adventurelookup
+RUN mkdir -p /var/www/adventurelookup/static
+RUN chown -R uwsgi:uwsgi /var/www/adventurelookup/static
 
 USER uwsgi
 CMD ["/cmd.sh"]
