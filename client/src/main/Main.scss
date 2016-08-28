@@ -12,6 +12,7 @@ div.header {
 nav.nav-main {
   display: flex;
   justify-content: space-between;
+  max-width: 960px;
   width: 80%;
 }
 
@@ -21,12 +22,17 @@ nav .nav-link {
   padding: 0.5em;
 }
 
+div.content-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 div.content {
+  margin: 2em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 960px;
   width: 80%;
 }
 
-div.content-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
