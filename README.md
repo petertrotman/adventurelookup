@@ -36,7 +36,7 @@ If you want to develop you'll probably want one or more of the following:
 
   (we need to run as root in the container with `-u root` because the default user doesn't have write access to the code files)
 
-  (if you get an error saying the database is not accepting connections, wait a few minutes and try again - it may not have booted yet)
+  (if you get an error saying the database is not accepting connections, wait a few seconds and try again - it may not have booted yet)
 
 4. Create the admin superuser (you will be prompted for a username and password)
 
