@@ -10,15 +10,18 @@ services:
     build: ./server
     volumes:
       - uwsgi-socket:/var/run/adventurelookup
+      - api-static:/var/www/adventurelookup/static
     environment:
       - ENV=PROD
-      - SECRET_KEY='ONLY-FOR-TESTING-MUST-CHANGE-BEFORE-DEPLOY'
+    env_file:
+      - /opt/.env
   nginx:
     build: ./nginx
     volumes:
       - ./nginx/conf.prod.d:/etc/nginx/conf.d
       - uwsgi-socket:/var/run/adventurelookup
-      - web-dist:/usr/share/nginx/html/adventurelookup
+      - web-dist:/usr/share/nginx/html/adventurelookup/web
+      - api-static:/usr/share/nginx/html/adventurelookup/api
     links:
       - web
     ports:
@@ -40,5 +43,6 @@ services:
 volumes:
   uwsgi-socket:
   web-dist:
+  api-static:
   data:
     # external: true
