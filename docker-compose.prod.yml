@@ -33,7 +33,9 @@ services:
       - ENV=PROD
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_DB=adventurelookup
+  redis:
+    image: redis
 
 volumes:
   uwsgi-socket:
