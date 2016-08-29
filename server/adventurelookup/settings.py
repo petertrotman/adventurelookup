@@ -27,7 +27,7 @@ else:
     SECRET_KEY = 'adventurelookup-secret-key'
     DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'adventurelookup.com']
+ALLOWED_HOSTS = ['localhost', 'adventurelookup.com', 'adventurelookup.moo.com']
 WSGI_APPLICATION = 'adventurelookup.wsgi.application'
 ROOT_URLCONF = 'adventurelookup.urls'
 BASE_URL = '/api'
