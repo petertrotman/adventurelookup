@@ -1,5 +1,7 @@
 # Adventure Lookup
 
+[![Build Status](https://semaphoreci.com/api/v1/petertrotman/adventurelookup/branches/master/badge.svg)](https://semaphoreci.com/petertrotman/adventurelookup)
+
 Open repository for the website https://adventurelookup.com/
 
 ## Quickstart
