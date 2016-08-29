@@ -14,7 +14,7 @@ services:
     environment:
       - ENV=PROD
     env_file:
-      - /opt/.env
+      - ../adventurelookup.env
   nginx:
     build: ./nginx
     volumes:
