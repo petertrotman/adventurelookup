@@ -1,9 +1,8 @@
 """
 Views for the Signups API.
 """
-from rest_framework import generics, status
+from rest_framework import generics
 from rest_framework.permissions import BasePermission
-from rest_framework.response import Response
 from . import models, serializers
 
 class IsStaffOrPostOnly(BasePermission):
@@ -27,4 +26,3 @@ class SignupView(generics.ListCreateAPIView):
     queryset = models.Signup.objects.all()
     serializer_class = serializers.SignupSerializer
     permission_classes = (IsStaffOrPostOnly,)
-
