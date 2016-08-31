@@ -83,7 +83,7 @@ In no particular order:
 * [Postgres](https://www.postgresql.org/): Enterprise-grade database which tonnes of awesome features.
 * [React](https://facebook.github.io/react/): Facebook's ultra trendy component rendering library (which is actually very cool).
   Along with:
-  * [[React-Router](https://github.com/reactjs/react-router): The official routing solution for react.
+  * [React-Router](https://github.com/reactjs/react-router): The official routing solution for react.
   * [Redux](https://github.com/reactjs/redux): An atomic state management library.
 
 ## Next Steps
