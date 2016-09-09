@@ -21,3 +21,10 @@ class EditionTests(TestCase):
         odandd = Edition.objects.create(name='OD&D')
         self.assertEqual(Edition.objects.first(), odandd)
         self.assertEqual(Edition.objects.count(), 1)
+
+
+class SettingTests(TestCase):
+    def test_create_author(self):
+        fr = Setting.objects.create(name='Forgotten Realms')
+        self.assertEqual(Setting.objects.first(), fr)
+        self.assertEqual(Setting.objects.count(), 1)
