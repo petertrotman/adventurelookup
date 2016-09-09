@@ -34,7 +34,6 @@ class Adventure(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
 
     title = models.TextField()
-    description
     edition = models.ForeignKey(Edition)
     authors = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher)
