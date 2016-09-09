@@ -1,3 +1,4 @@
+from datetime import date
 from django.test import TestCase
 from .models import Author, Publisher, Edition, Setting, Adventure
 
@@ -28,3 +29,24 @@ class SettingTests(TestCase):
         fr = Setting.objects.create(name='Forgotten Realms')
         self.assertEqual(Setting.objects.first(), fr)
         self.assertEqual(Setting.objects.count(), 1)
+
+
+class AdventureTests(TestCase):
+    def test_create_author(self):
+        fifth_ed = Edition.objects.create(name='D&D 5th Edition')
+        wotc = Publisher.objects.create(name='Wizards of the Coast')
+        fr = Setting.objects.create(name='Forgotten Realms')
+
+        lmop = Adventure.objects.create(
+            title='Lost Mines of Phandelver',
+            edition=fifth_ed,
+            publisher=wotc,
+            setting=fr,
+            published=date(2014, 1, 1),
+            min_level=1,
+            max_level=5,
+            min_characters=3,
+            max_characters=5)
+        lmop.authors.create(name='Gary Gygax')
+        self.assertEqual(Adventure.objects.first(), lmop)
+        self.assertEqual(Adventure.objects.count(), 1)
