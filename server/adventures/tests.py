@@ -14,3 +14,10 @@ class PublisherTests(TestCase):
         wotc = Publisher.objects.create(name='Wizards of the Coast')
         self.assertEqual(Publisher.objects.first(), wotc)
         self.assertEqual(Publisher.objects.count(), 1)
+
+
+class EditionTests(TestCase):
+    def test_create_author(self):
+        odandd = Edition.objects.create(name='OD&D')
+        self.assertEqual(Edition.objects.first(), odandd)
+        self.assertEqual(Edition.objects.count(), 1)
