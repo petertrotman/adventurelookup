@@ -1,6 +1,6 @@
 from datetime import date
 from django.test import TestCase
-from .models import Author, Publisher, Edition, Setting, Adventure
+from adventures.models import Author, Publisher, Edition, Setting, Adventure
 
 
 class AuthorTests(TestCase):
