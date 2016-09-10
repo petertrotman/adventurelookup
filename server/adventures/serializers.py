@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Author, Publisher, Edition, Adventure
+from .models import Author, Publisher, Edition, Setting, Adventure
 
 
 class AuthorSerializer(serializers.ModelSerializer):
@@ -15,6 +15,11 @@ class PublisherSerializer(serializers.ModelSerializer):
 class EditionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Edition
+
+
+class SettingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Setting
 
 
 class AdventureSerializer(serializers.ModelSerializer):
