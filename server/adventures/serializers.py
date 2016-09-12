@@ -1,28 +1,43 @@
+'''
+Contains the serializers for all models
+
+AuthorSerializer: Serializer for the Author model.
+PublisherSerializer: Serializer for the Publisher model.
+EditionSerializer: Serializer for the Edition model.
+SettingSerializer: Serializer for the Setting model.
+AdventureSerializer: Serializer for the Adventure model. Contains the
+                     above serializers, nested.
+'''
 from rest_framework import serializers
 from .models import Author, Publisher, Edition, Setting, Adventure
 
 
 class AuthorSerializer(serializers.ModelSerializer):
+    '''Serializer for the Author model.'''
     class Meta:
         model = Author
 
 
 class PublisherSerializer(serializers.ModelSerializer):
+    '''Serializer for the Publisher model.'''
     class Meta:
         model = Publisher
 
 
 class EditionSerializer(serializers.ModelSerializer):
+    '''Serializer for the Edition model.'''
     class Meta:
         model = Edition
 
 
 class SettingSerializer(serializers.ModelSerializer):
+    '''Serializer for the Setting model.'''
     class Meta:
         model = Setting
 
 
 class AdventureSerializer(serializers.ModelSerializer):
+    '''Nested serializer for the Adventure model.'''
     authors = AuthorSerializer(many=True)
     publisher = PublisherSerializer()
     edition = EditionSerializer()
@@ -32,6 +47,9 @@ class AdventureSerializer(serializers.ModelSerializer):
         model = Adventure
 
     def create(self, validated_data):
+        '''Creates a new Adventure object in the database from
+           validated_data. Required to make the serializer writable.'''
+
         # Remove and store data for related objects from validated_data.
         authors_data = validated_data.pop('authors')
         publisher_data = validated_data.pop('publisher')
@@ -59,6 +77,8 @@ class AdventureSerializer(serializers.ModelSerializer):
         return adventure
 
     def update(self, instance, validated_data):
+        '''Updates an existing Adventure object in the database from
+           validated_data. Required to make the serializer writable.'''
         # Get the updated_data out of validated_data, if it's there.
         updated_data = {}
         for field in ('authors', 'publisher', 'edition', 'setting'):
