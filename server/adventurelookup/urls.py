@@ -22,6 +22,8 @@ urlpatterns = [
     url(settings.BASE_URL_PATTERN + r'/auth/',
         include('rest_framework.urls', namespace='rest_framework')),
     url(settings.BASE_URL_PATTERN + r'/signups', include('signups.urls')),
+    url(settings.BASE_URL_PATTERN + r'/adventures/',
+        include('adventures.urls')),
     url(settings.BASE_URL_PATTERN + r'/admin/', admin.site.urls),
 ]
 
