@@ -1,10 +1,13 @@
 """
 Models for the Adventures app.
 """
-# from django.db import models
+from django.db import models
 
 
 class Author(models.Model):
+    """
+    The Author model.
+    """
     name = models.TextField()
 
     def __str__(self):
@@ -12,6 +15,9 @@ class Author(models.Model):
 
 
 class Publisher(models.Model):
+    """
+    The Publisher model.
+    """
     name = models.TextField()
 
     def __str__(self):
@@ -19,6 +25,9 @@ class Publisher(models.Model):
 
 
 class Edition(models.Model):
+    """
+    The Edition model.
+    """
     name = models.TextField()
 
     def __str__(self):
@@ -26,6 +35,9 @@ class Edition(models.Model):
 
 
 class Setting(models.Model):
+    """
+    The Setting model.
+    """
     name = models.TextField()
 
     def __str__(self):
@@ -33,6 +45,9 @@ class Setting(models.Model):
 
 
 class Adventure(models.Model):
+    """
+    The Adventure model.
+    """
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
