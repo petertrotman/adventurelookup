@@ -16,6 +16,8 @@ RUN mkdir -p /var/run/adventurelookup
 RUN chown -R uwsgi:uwsgi /var/run/adventurelookup
 RUN mkdir -p /var/www/adventurelookup/static
 RUN chown -R uwsgi:uwsgi /var/www/adventurelookup/static
+RUN mkdir -p /home/uwsgi
+RUN chown -R uwsgi:uwsgi /home/uwsgi
 
 USER uwsgi
 CMD ["/cmd.sh"]
