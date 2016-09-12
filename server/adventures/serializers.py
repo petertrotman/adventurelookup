@@ -113,12 +113,12 @@ class AdventureSerializer(serializers.ModelSerializer):
             setting = instance.setting
 
         instance.title = validated_data.get('title', instance.title)
-        instance.title = validated_data.get('published', instance.published)
-        instance.title = validated_data.get('min_level', instance.min_level)
-        instance.title = validated_data.get('max_level', instance.max_level)
-        instance.title = validated_data.get('min_characters',
+        instance.published = validated_data.get('published', instance.published)
+        instance.min_level = validated_data.get('min_level', instance.min_level)
+        instance.max_level = validated_data.get('max_level', instance.max_level)
+        instance.min_characters = validated_data.get('min_characters',
                                             instance.min_characters)
-        instance.title = validated_data.get('max_characters',
+        instance.max_characters = validated_data.get('max_characters',
                                             instance.max_characters)
         instance.publisher = publisher
         instance.edition = edition
