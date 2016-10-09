@@ -18,11 +18,14 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from adventures.urls import router as adventures_router
+
 urlpatterns = [
     url(settings.BASE_URL_PATTERN + r'/auth/',
         include('rest_framework.urls', namespace='rest_framework')),
     url(settings.BASE_URL_PATTERN + r'/signups', include('signups.urls')),
     url(settings.BASE_URL_PATTERN + r'/admin/', admin.site.urls),
+    url(settings.BASE_URL_PATTERN + '/', include(adventures_router.urls)),
 ]
 
 if settings.DEBUG:
